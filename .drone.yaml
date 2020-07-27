@@ -1,0 +1,15 @@
+kind: pipeline
+name: default
+workspace:
+    base: /go
+    path: src/github.com/oldthreefeng/db-doc
+
+# go mod vender
+#environment:
+#    GO111MODULE: on
+
+steps:
+- name: build
+  image: golang:1.13.5
+  commands:
+      - go build  -o db-doc -ldflags "-X main.Buildstamp=$(date '+%F %T')"  main.go
